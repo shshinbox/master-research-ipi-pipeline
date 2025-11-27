@@ -4,14 +4,13 @@ from actdt import ActivationsPipeline
 
 from exec import parse_layers_arg, validate_args, set_repro, require_cuda
 
-from exec import mistral7b_create_parser as create_parser
-
-# from exec import llama3_create_parser as create_parser
-
-# from exec import phi3_create_parser as create_parser
-
 
 def main():
+    from exec import mistral7b_create_parser as create_parser
+
+    # from exec import llama3_create_parser as create_parser
+    # from exec import phi3_create_parser as create_parser
+
     parser = create_parser()
     args = parser.parse_args()
 

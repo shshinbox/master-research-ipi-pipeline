@@ -8,10 +8,38 @@
 
 ### Data Synthesizer
 
+### 개요
+
+- 트리거와 명령어를 클린 데이터의 context 시작, 중간, 끝 위치에 삽입하여 오염 데이터를 생성합니다.
+- 생성된 데이터 쌍을 사용하여 hidden_state 추출에 활용됩니다.
+
+#### A. 입력 데이터
+| 타입        | arg 명          | 필수 필드             | 설명                            |
+| ----------- | --------------- | --------------------- | ------------------------------- |
+| 기본 데이터 | samples_file    | id, question, context | 원본 데이터                     |
+| 삽입 지시문 | injections_file | instruction           | 트리거와 결합하여 합성될 지시문 |
+
+
+#### B. 출력 데이터
+| 필드명               | 설명                                |
+| -------------------- | ----------------------------------- |
+| id                   | 샘플 ID (clean_ / poisoned_ 접두사) |
+| question             | 원본 질문 (Primary Task)            |
+| context              | 데이터 블록                         |
+| label                | 0 (clean) 또는 1 (poisoned)         |
+| injected_instruction | 삽입된 최종 지시문                  |
+| injected_position    | 삽입된 위치                         |
+| trigger              | 트리거 문자열                       |
+
+
 ---
 ## Activation Extractor
 
-### 구조
+### 개요
+
+- 언어 모델의 질문(q_only) 입력과 질문+맥락(q_ctx) 입력에 대한 마지막 토큰의 hidden_state를 수집합니다.
+- 수집된 hidden_state를 기반으로 hidden_state(q_ctx) - hidden_state(q_only)를 계산합니다.
+- 클린 데이터셋 및 오염 데이터셋에서 추출하여 분류기 학습 데이터로 활용합니다.
 
 #### A. 코어 로직 (src/actdt/)
 
