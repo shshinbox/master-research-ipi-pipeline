@@ -161,7 +161,7 @@ python src/main.py \
 
 
 
-# Linear Probe
+# IPI(Indirect Prompt Injection) Classifier
 
 ## 개요
 수집한 `hidden_state` 차이 벡터를 바탕으로 이진 분류를 LogisticRegression을 사용하여 poisoned sample을 탐지하는 분류기입니다.

@@ -2,10 +2,9 @@ from typing import Dict
 
 
 class PromptTemplateBuilder:
-    def __init__(self):
-        pass
 
-    def build_inputs_with_template(self, question: str, context: str) -> Dict[str, str]:
+    @staticmethod
+    def build_inputs_with_template(question: str, context: str) -> Dict[str, str]:
         q_only_template = f"""
 Here are your main requests:
 <MAIN>

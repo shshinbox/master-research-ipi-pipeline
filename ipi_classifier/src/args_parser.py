@@ -8,8 +8,10 @@ def create_parser():
         "--train_files",
         nargs="*",
         default=[
-            "clean_samples.jsonl",
-            "poisoned_samples.jsonl",
+            # "clean_samples.jsonl",
+            # "poisoned_samples.jsonl",
+            "squadv1_train_deltas_clean_samples.jsonl",
+            "squadv1_train_deltas_poisoned_samples.jsonl",
         ],
         help="훈련 데이터 파일",
     )
@@ -17,8 +19,10 @@ def create_parser():
         "--val_files",
         nargs="*",
         default=[
-            "clean_samples.jsonl",
-            "poisoned_samples.jsonl",
+            # "clean_samples.jsonl",
+            # "poisoned_samples.jsonl",
+            "squadv1val_deltas_clean_samples.jsonl",
+            "squadv1val_deltas_syntest_poisoned_samples.jsonl",
         ],
         help="검증 데이터 파일",
     )
@@ -26,14 +30,18 @@ def create_parser():
         "--test_files",
         nargs="*",
         default=[
-            "clean_samples.jsonl",
-            "poisoned_samples.jsonl",
+            # "clean_samples.jsonl",
+            # "poisoned_samples.jsonl",
+            "hotpotqa_val_deltas_clean_samples.jsonl",
+            "hotpotqa_val_test_syn_deltas_poisoned_samples.jsonl",
+            "squadv1val_deltas_clean_samples.jsonl",
+            "squadv1val_deltas_syntest_poisoned_samples.jsonl",
         ],
         help="테스트 데이터 파일",
     )
 
     parser.add_argument(
-        "--idx_type", type=str, default="mitral_layer31", help="델타 벡터 인덱스 타입"
+        "--idx_type", type=str, default="llama3_layer15", help="델타 벡터 인덱스 타입"
     )
     parser.add_argument(
         "--max_samples", type=int, default=90000, help="클래스당 최대 샘플 수"

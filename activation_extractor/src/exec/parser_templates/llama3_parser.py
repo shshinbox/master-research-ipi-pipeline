@@ -12,14 +12,14 @@ def create_parser() -> ArgumentParser:
         "--in",
         dest="in_jsonl",
         type=str,
-        default="squadv2val_clean_samples.jsonl",
+        default="formatted_data\\squadv1_train_clean_samples.jsonl",
         help="입력 JSONL 파일 경로",
     )
     parser.add_argument(
         "--out",
         dest="out_jsonl",
         type=str,
-        default="squadv2val_val_deltas_clean_samples.jsonl",
+        default="squadv1_train_deltas_clean_samples.jsonl",
         help="출력 JSONL 파일 경로",
     )
     parser.add_argument(
@@ -37,7 +37,7 @@ def create_parser() -> ArgumentParser:
     )
     parser.add_argument("--max_len", type=int, default=8192, help="최대 시퀀스 길이")
     parser.add_argument(
-        "--eos_token", type=str, default="<EOS>", help="EOS 토큰 문자열"
+        "--eos_token", type=str, default="[EOS]", help="EOS 토큰 문자열"
     )
     parser.add_argument(
         "--layers",

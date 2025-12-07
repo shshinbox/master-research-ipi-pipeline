@@ -4,7 +4,7 @@ import torch
 from tqdm import tqdm
 from typing import List, Any, Iterator, Dict, Set
 
-from actdt.model_loader import load_model_tokenizer
+from actdt.model_loader import ModelLoader
 from actdt.layer_processor import LayerProcessor
 from actdt.hidden_collector import HiddenStateCollector
 from actdt.template_builder import PromptTemplateBuilder
@@ -29,7 +29,7 @@ class ActivationsPipeline:
 
         print("모델&토크나이저 로딩")
 
-        self.tokenizer, self.model, self.eos_id = load_model_tokenizer(
+        self.tokenizer, self.model, self.eos_id = ModelLoader.load_model_tokenizer(
             model_id=self.model_id,
             device=self.device,
             load_in_8bit=self.load_in_8bit,

@@ -252,14 +252,15 @@ class HiddenStateCollector:
             raise ValueError("questions와 contexts의 갯수가 같아야 합니다.")
 
         batch_size = len(questions)
-        builder = PromptTemplateBuilder()
 
         # 모든 질문과 컨텍스트에 대해 템플릿 생성
         q_only_texts = []
         q_ctx_texts = []
 
         for question, context in zip(questions, contexts):
-            templates = builder.build_inputs_with_template(question, context)
+            templates = PromptTemplateBuilder.build_inputs_with_template(
+                question, context
+            )
             q_only_texts.append(templates["q_only"])
             q_ctx_texts.append(templates["q_ctx"])
 
@@ -317,8 +318,7 @@ class HiddenStateCollector:
         selected_layers: List[int],
     ) -> Dict:
 
-        builder = PromptTemplateBuilder()
-        templates = builder.build_inputs_with_template(question, context)
+        templates = PromptTemplateBuilder.build_inputs_with_template(question, context)
 
         input_q = self.encode_ensure_eos_at_last(
             text=templates["q_only"], device=device, eos_id=eos_id, max_len=max_len
